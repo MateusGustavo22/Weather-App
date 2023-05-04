@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const { fontFamily } = require('tailwindcss/defaultTheme')
+
 module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -7,10 +9,16 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors:{
+        'line': '#D6D6D6',
+        'color2': '#EFECEC'
+      },
+      fontFamily: {
+        sans: ['var(--font-inter)', ...fontFamily.sans],
+        roboto: ['var(--font-roboto)'],
+      },
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'ceu-limpo': "url('/fundo_dia_limpo.png')"
       },
     },
   },
