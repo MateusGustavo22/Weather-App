@@ -26,7 +26,6 @@ interface WeatherData {
 
 export default function Home() {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null)
-
   const date = weatherData?.timestamp ? new Date(weatherData.timestamp * 1000) : null;
   const hourNumber = date?.getHours();
   const hour = String(hourNumber).padStart(2, '0');
@@ -135,7 +134,7 @@ export default function Home() {
   }
 
   return (
-    <div style={backgroundImg ? { backgroundImage: backgroundImg } : { backgroundImage: '' }} className={` w-full h-full relative bg-center bg-no-repeat bg-cover flex flex-row `}>
+    <div style={ backgroundImg ? {backgroundImage: backgroundImg} : {backgroundImage: ''} } className={`w-full h-full relative bg-center bg-no-repeat bg-cover flex flex-row `}>
       <div className="max-w-[1040px] h-screen m-auto p-2 w-full flex flex-col place-content-between pt-8 pb-8 pl-12 pr-12">
         <div className="w-full  justify-end items-center space-x-4 flex flex-row">
           <span className="text-white font-medium text-[26px] block text-right">{weatherData?.date}</span>
