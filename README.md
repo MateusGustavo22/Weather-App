@@ -1,4 +1,10 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Weather App
+
+![screenshote](https://github.com/MateusGustavo22/weather/blob/main/public/screenshots/Captura%20de%20tela%20de%202023-05-09%2022-43-16.png)
+
+![screenshote](https://github.com/MateusGustavo22/weather/blob/main/public/screenshots/Captura%20de%20tela%20de%202023-05-09%2022-43-26.png)
+
+![screenshote](https://github.com/MateusGustavo22/weather/blob/main/public/screenshots/Captura%20de%20tela%20de%202023-05-09%2022-43-34.png)
 
 ## Getting Started
 
