@@ -1,0 +1,32 @@
+const weatherCodes: { [key: number]: string } = {
+  0: "Céu limpo",
+  1: "Pouco nublado",
+  2: "Pouco nublado",
+  3: "Pouco nublado",
+  45: "Nevoeiro",
+  48: "Nevoeiro",
+  51: "Chuva leve",
+  53: "Chuva leve",
+  55: "Chuva leve",
+  56: "Chuva leve congelante",
+  57: "Chuva leve congelante",
+  61: "Chuva forte",
+  63: "Chuva leve",
+  65: "Chuva leve",
+  66: "Chuva congelante",
+  67: "Chuva congelante",
+  71: "Neve fina",
+  73: "Neve fina",
+  75: "Neve fina",
+  77: "Grãos de neve",
+  80: "Chuva forte",
+  81: "Chuva forte",
+  82: "Chuva forte",
+  85: "Neve pesada",
+  86: "Neve pesada",
+  95: "Trovoada",
+  96: "Trovoada e granizo",
+  99: "Trovoada e granizo"
+};
+
+export default weatherCodes

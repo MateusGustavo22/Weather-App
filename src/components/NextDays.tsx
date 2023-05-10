@@ -1,21 +1,28 @@
 import NextDayCard from "./NextDayCard"
+import moment from 'moment';
 
-export default function NextDays() {
+interface Props {
+  forecast: {
+    timestamp: number[],
+    tempMax: number[],
+    tempMin: number[],
+    weathercode: number[]
+  }
+}
+
+export default function NextDays({ forecast }: Props) {
+  //Organiza todos arrays do forecast em um unico array
+  const forecastArray = []
+  for (let i = 0; i < 5; i++) {
+    forecastArray.push({ timestamp: forecast.timestamp[i], tempMax: forecast.tempMax[i], tempMin: forecast.tempMin[i], weathercode: forecast.weathercode[i] })
+  }
+
   return (
     <div className="w-full h-max p-1 flex flex-col space-y-8 items-center">
-      <span className="font-bold text-color2 text-[20px] text-sans">Previsões dos proximos dias</span>
-      <div className="w-full flex flex-row justify-center space-x-4 items-center">
-        <button className="bg-[#ffffff34] text-white rounded-md text-sans font-semibold pt-1 pb-1 pl-3 pr-3">7 dias</button>
-        <button className="bg-[#ffffff34] text-white rounded-md text-sans font-semibold pt-1 pb-1 pl-3 pr-3">15 dias</button>
-        <button className="bg-[#ffffff34] text-white rounded-md text-fonts font-semibold pt-1 pb-1 pl-3 pr-3">30 dias</button>
-      </div>
+      <span className="font-bold text-color2 text-[20px] text-sans">Proximos dias</span>
       <div className="w-full h-max flex flex-col space-y-6 mt-8 mb-4">
-        <NextDayCard />
-        <NextDayCard />
-        <NextDayCard />
-        <NextDayCard />
-        <NextDayCard />
+        {forecastArray.map(item => <NextDayCard key={item.timestamp} timestamp={item.timestamp} tempMax={item.tempMax} tempMin={item.tempMin} weathercode={item.weathercode} />)}
       </div>
-    </div>  
+    </div>
   )
 }
