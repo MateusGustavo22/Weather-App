@@ -1,26 +1,36 @@
-import { BsFillSunFill, BsFillMoonStarsFill, BsFillCloudsFill, BsFillCloudRainHeavyFill, BsSnow, BsCloudLightningRainFill } from 'react-icons/bs'
+import {
+  BsFillSunFill,
+  BsFillMoonStarsFill,
+  BsFillCloudsFill,
+  BsFillCloudRainHeavyFill,
+  BsSnow,
+  BsCloudLightningRainFill,
+} from "react-icons/bs";
 
 interface Props {
-  weathercode: number,
-  timestamp: number
+  weathercode: number;
+  timestamp: number;
 }
 
 export default function TempIcon({ weathercode, timestamp }: Props) {
+  const date = new Date();
+  const hourNumber = date.getHours();
 
-  const date = new Date()
-  const hourNumber = date.getHours()
-
-  let weatherIcon
+  let weatherIcon;
 
   switch (weathercode) {
     case 0:
-      weatherIcon = hourNumber < 5 || hourNumber >= 17 ? <BsFillMoonStarsFill color='white' size={26} /> : <BsFillSunFill color='#FFF100' size={26} />
-      break;
+      weatherIcon =
+        hourNumber < 5 || hourNumber >= 17 ? (
+          <BsFillMoonStarsFill color="white" size={26} />
+        ) : (
+          <BsFillSunFill color="#FFF100" size={26} />
+        );
       break;
     case 1:
     case 2:
     case 3:
-      weatherIcon = <BsFillCloudsFill color='white' size={26} />;
+      weatherIcon = <BsFillCloudsFill color="white" size={26} />;
       break;
     case 51:
     case 53:
@@ -31,7 +41,7 @@ export default function TempIcon({ weathercode, timestamp }: Props) {
     case 80:
     case 81:
     case 82:
-      weatherIcon = <BsFillCloudRainHeavyFill color='white' size={26} />;
+      weatherIcon = <BsFillCloudRainHeavyFill color="white" size={26} />;
       break;
     case 45:
     case 48:
@@ -45,12 +55,12 @@ export default function TempIcon({ weathercode, timestamp }: Props) {
     case 86:
     case 96:
     case 99:
-      weatherIcon = <BsSnow color='white' size={26} />
+      weatherIcon = <BsSnow color="white" size={26} />;
       break;
     case 95:
     case 96:
     case 99:
-      weatherIcon = <BsCloudLightningRainFill color='white' size={26} />
+      weatherIcon = <BsCloudLightningRainFill color="white" size={26} />;
       break;
     default:
       // código para caso padrão
@@ -61,5 +71,5 @@ export default function TempIcon({ weathercode, timestamp }: Props) {
     <div className="w-[50px] h-[50px] rounded-lg flex items-center justify-center bg-[#ffffff54]">
       {weatherIcon}
     </div>
-  )
+  );
 }
