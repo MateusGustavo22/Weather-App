@@ -6,7 +6,7 @@ Este projeto foi desenvolvido utilizando ReactJS, Next.js e Tailwind. Sua princi
 · Velocidade do vento
 · Previsão dos próximos 5 dias
 
-#Captura de tela do projeto
+##Captura de tela do projeto
 ![screenshote]()
 
 ![screenshote]()
