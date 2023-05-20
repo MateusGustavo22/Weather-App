@@ -10,9 +10,9 @@ Informações disponíveis
 · Previsão dos próximos 5 dias
 
 ## Captura de tela do projeto
-![screenshote]()
+![screenshote](https://github.com/MateusGustavo22/previsao-do-tempo/blob/main/public/screenshots/print01.png)
 
-![screenshote]()
+![screenshote](https://github.com/MateusGustavo22/previsao-do-tempo/blob/main/public/screenshots/print02.png)
 
 ## Execute o projeto em sua máquina
 Clone o projeto
