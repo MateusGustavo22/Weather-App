@@ -47,7 +47,7 @@ export default function Input({ handleWeatherData }: Props) {
       }));
       setFilterResults(cityNames);
     } catch (error) {
-      console.log("Erro ao buscar cidades: " + error);
+      throw new Error("Erro ao buscar cidades: " + error);
     }
   }
 
@@ -75,12 +75,12 @@ export default function Input({ handleWeatherData }: Props) {
         {filterResults
           ? filterResults.slice(0, 8).map((res) => (
               <div
+                key={res.latitude}
                 onClick={() => {
                   handleWeatherData(res.latitude, res.longitude);
                   setInputText(res.name);
                   setFilterInputBox("none");
                 }}
-                key={res.latitude}
                 className="w-full flex cursor-pointer hover:bg-[#23293d] p-2 rounded-xl flex-col"
               >
                 <span className="text-sans text-white">{res.name}</span>

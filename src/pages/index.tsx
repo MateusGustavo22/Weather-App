@@ -26,70 +26,15 @@ interface WeatherData {
 
 export default function Home() {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
-  const date = weatherData?.timestamp
-    ? new Date(weatherData.timestamp * 1000)
-    : null;
+  const [background, setBackground] = useState<string | null>("");
+
+  const date = new Date(
+    weatherData?.timestamp ? weatherData.timestamp * 1000 : 0
+  );
+
   const hourNumber = date?.getHours();
   const hour = String(hourNumber).padStart(2, "0");
   const minutes = date?.getMinutes().toString().padStart(2, "0");
-
-  let backgroundImg: string | null;
-
-  switch (weatherData?.weathercode) {
-    case 0:
-      backgroundImg = hourNumber
-        ? hourNumber < 5 || hourNumber >= 17
-          ? "url('/backgrounds/noite_limpa.png')"
-          : "url('/backgrounds/dia_limpo.jpg')"
-        : null;
-      break;
-    case 1:
-    case 2:
-    case 3:
-      backgroundImg = hourNumber
-        ? hourNumber < 5 || hourNumber >= 17
-          ? "url('/backgrounds/noite_nublada.png')"
-          : "url('/backgrounds/pouco_nublado.png')"
-        : null;
-      break;
-    case 51:
-    case 53:
-    case 55:
-    case 56:
-    case 57:
-      backgroundImg = "url('/backgrounds/garoa.png')";
-      break;
-    case 61:
-    case 63:
-    case 65:
-    case 66:
-    case 67:
-    case 80:
-    case 81:
-    case 82:
-      backgroundImg = "url('/backgrounds/chuva.png')";
-      break;
-    case 71:
-    case 73:
-    case 75:
-    case 77:
-    case 85:
-    case 86:
-      backgroundImg = hourNumber
-        ? hourNumber < 5 || hourNumber >= 17
-          ? "url('/backgrounds/noite_neve.png')"
-          : "url('/backgrounds/dia_neve.png')"
-        : null;
-      break;
-    case 95:
-    case 96:
-    case 99:
-      backgroundImg = "url('/backgrounds/trovoada.png')";
-      break;
-    default:
-      backgroundImg = "gray";
-      break;
-  }
 
   async function fetchApi(url: string) {
     try {
@@ -97,7 +42,7 @@ export default function Home() {
       const data = await response.json();
       return data;
     } catch (error) {
-      console.log("Erro ao consultar a API: " + console.log(error));
+      throw new Error("Erro ao consultar a API: " + error);
     }
   }
 
@@ -145,10 +90,6 @@ export default function Home() {
     setWeatherData(weatherData);
   }, []);
 
-  useEffect(() => {
-    getData(defaultDataUrl, defaultDataUrl);
-  }, [getData]);
-
   function handleWeatherData(latitude: number, longitude: number): void {
     const weatherData = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,weathercode&models=jma_seamless&daily=weathercode,temperature_2m_max,temperature_2m_min&current_weather=true&timeformat=unixtime&timezone=auto`;
     const weatherData24hoursData = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,weathercode&models=jma_seamless&daily=weathercode,temperature_2m_max,temperature_2m_min&current_weather=true&timeformat=unixtime&forecast_days=1&timezone=auto`;
@@ -156,12 +97,74 @@ export default function Home() {
     getData(weatherData, weatherData24hoursData);
   }
 
+  useEffect(() => {
+    getData(defaultDataUrl, defaultDataUrl);
+  }, [getData]);
+
+  useEffect(() => {
+    let backgroundImg: string | null;
+
+    switch (weatherData?.weathercode) {
+      case 0:
+        backgroundImg =
+          hourNumber < 5 || hourNumber >= 17
+            ? "url('/backgrounds/noite_limpa.png')"
+            : "url('/backgrounds/dia_limpo.jpg')";
+        break;
+      case 1:
+      case 2:
+      case 3:
+      case 45:
+        backgroundImg =
+          hourNumber < 5 || hourNumber >= 17
+            ? "url('/backgrounds/noite_nublada.png')"
+            : "url('/backgrounds/pouco_nublado.png')";
+        break;
+      case 51:
+      case 53:
+      case 55:
+      case 56:
+      case 57:
+        backgroundImg = "url('/backgrounds/garoa.png')";
+        break;
+      case 61:
+      case 63:
+      case 65:
+      case 66:
+      case 67:
+      case 80:
+      case 81:
+      case 82:
+        backgroundImg = "url('/backgrounds/chuva.png')";
+        break;
+      case 71:
+      case 73:
+      case 75:
+      case 77:
+      case 85:
+      case 86:
+        backgroundImg =
+          hourNumber < 5 || hourNumber >= 17
+            ? "url('/backgrounds/noite_neve.png')"
+            : "url('/backgrounds/dia_neve.png')";
+        break;
+      case 95:
+      case 96:
+      case 99:
+        backgroundImg = "url('/backgrounds/trovoada.png')";
+        break;
+      default:
+        backgroundImg = "gray";
+        break;
+    }
+
+    setBackground(backgroundImg);
+  }, [weatherData, hourNumber]);
+
   return (
     <div
       style={
-        backgroundImg
-          ? { backgroundImage: backgroundImg }
-          : { backgroundImage: "" }
+        background ? { backgroundImage: background } : { backgroundImage: "" }
       }
       className={`w-full h-screen fixed bg-center bg-no-repeat bg-cover flex flex-row `}
     >
