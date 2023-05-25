@@ -22,8 +22,8 @@ export default function NextDays({ forecast }: Props) {
   }
 
   return (
-    <div className="w-full display1:backdrop-blur-xl display1:p-4 rounded-xl flex flex-col space-y-8 items-center display1:items-start">
-      <span className="font-bold text-color2 text-lg text-sans">
+    <div className="max-w-[500px] m-auto rounded-xl flex display1:items-start flex-col space-y-8 items-center">
+      <span className="font-bold text-color2 text-2xl text-sans">
         Proximos dias
       </span>
       <div className="w-full h-max flex flex-col space-y-6 mt-8 mb-4">

@@ -39,6 +39,7 @@ export default function Input({ handleWeatherData }: Props) {
         `https://geocoding-api.open-meteo.com/v1/search?name=${e}`
       );
       const data = await reponse.json();
+      console.log(data.results)
       const cityNames = data.results.slice(0, 8).map((item: City) => ({
         name: item.name,
         admin1: item.admin1,
@@ -47,13 +48,13 @@ export default function Input({ handleWeatherData }: Props) {
       }));
       setFilterResults(cityNames);
     } catch (error) {
-      throw new Error("Erro ao buscar cidades: " + error);
+      console.log("Erro ao buscar cidades: " + error);
     }
   }
 
   return (
-    <div className="w-full">
-      <div className="h-max bg-trasparent display1:border-2 display1:pt-4 display1:pb-4 border-[1px] mb-2 rounded-lg border-white flex flex-row pl-3 pr-3 pt-2 pb-2 items-center focus-within:backdrop-blur-lg">
+    <div className="max-w-[500px] w-full">
+      <div className="h-max bg-trasparent border-[1px] mb-2 rounded-lg border-white flex flex-row pl-3 pr-3 pt-2 pb-2 items-center focus-within:backdrop-blur-lg">
         <BsSearch color="white" size={20} />
         <input
           onChange={(e) => {
